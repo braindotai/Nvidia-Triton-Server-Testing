@@ -57,7 +57,7 @@ if os.path.isdir(image_filename):
         os.path.join(image_filename, f)
         for f in os.listdir(image_filename)
         if os.path.isfile(os.path.join(image_filename, f))
-    ] * 1300
+    ] * 512
 else:
     filenames = [
         image_filename,
@@ -71,12 +71,12 @@ session = onnxruntime.InferenceSession('./src/models/face_recognition/1/model.on
 print('[============ Running Infering ============]')
 
 for request_id, inputs in enumerate(request_generator(filenames)):
-    request_start_time = time.time()
-
     print('Batch shape:', inputs.shape)
 
-    request_output = inference(session, inputs)
+    request_start_time = time.time()
 
+    request_output = inference(session, inputs)
+    
     request_end_time = time.time()
 
     print(f'Request done in {request_end_time - request_start_time}\n')

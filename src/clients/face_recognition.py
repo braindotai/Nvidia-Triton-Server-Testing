@@ -154,7 +154,7 @@ def main():
             os.path.join(image_filename, f)
             for f in os.listdir(image_filename)
             if os.path.isfile(os.path.join(image_filename, f))
-        ] * 1300
+        ] * 512
     else:
         filenames = [
             image_filename,
@@ -167,9 +167,9 @@ def main():
         print('[============ Running Infering ============]')
 
         for request_id, inputs in enumerate(request_generator(filenames, input_name, input_dtype, input_format, max_batch_size, (c, h, w))):
-            request_start_time = time.time()
-
             print('Batch shape:', inputs[0].shape())
+
+            request_start_time = time.time()
 
             response = triton_client.infer(
                 model_name,
