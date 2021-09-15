@@ -1,0 +1,19 @@
+name: "face_recognition"
+platform: "onnxruntime_onnx"
+backend: "onnxruntime"
+max_batch_size: 128
+input [
+	{
+		name: "input"
+		data_type: TYPE_FP32
+		format: FORMAT_NCHW
+		dims: [3,112,112]
+	}
+]
+output [
+	{
+		name: "output"
+		data_type: TYPE_FP32
+		dims: [512]
+	}
+]

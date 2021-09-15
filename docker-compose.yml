@@ -1,0 +1,18 @@
+services:
+    server:
+        image: triton-server
+        # deploy:
+        #     resources:
+        #         reservations:
+        #             devices:
+        #                 - driver: nvidia
+        #                   count: 1
+        #                   capabilities: [gpu]
+        volumes:
+            - ./src/models:/home/user/src/models
+        ports:
+            - 8000:8000
+            - 8001:8001
+            - 8002:8002
+        # tty: true
+        stdin_open: true
